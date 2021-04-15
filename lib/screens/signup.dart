@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:trial1/helpers/common.dart';
 import 'package:trial1/helpers/style.dart';
 import 'package:trial1/provider/user.dart';
+import 'package:trial1/screens/OTP.dart';
+import 'package:trial1/screens/OTP2.dart';
 import 'package:trial1/screens/login.dart';
 import 'package:trial1/widgets/loading.dart';
 import 'home.dart';
@@ -275,7 +277,7 @@ class _SignUpState extends State<SignUp> {
                                   14.0, 8.0, 14.0, 8.0),
                               child: Material(
                                   borderRadius: BorderRadius.circular(5.0),
-                                  color: Color(0xFFf7418c),
+                                  color: Color(0xFFff3b5c),
                                   elevation: 0.0,
                                   child: MaterialButton(
                                     onPressed: () async {
@@ -292,7 +294,7 @@ class _SignUpState extends State<SignUp> {
                                           return;
                                         }
                                         changeScreenReplacement(
-                                            context, Login());
+                                            context, HomePage());
                                       }
                                     },
                                     minWidth: MediaQuery.of(context).size.width,
@@ -310,13 +312,28 @@ class _SignUpState extends State<SignUp> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: InkWell(
                                     onTap: () {
+                                      changeScreen(context, LoginScreen());
+                                    },
+                                    child: Text(
+                                      "Register with Phone Number",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Color(0xFF666666),
+                                          fontSize: 14),
+                                    ))),
+                            SizedBox(height: 10),
+                            Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                    onTap: () {
                                       Navigator.pop(context);
                                     },
                                     child: Text(
                                       "I already have an account",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          color: Colors.black, fontSize: 16),
+                                          color: Color(0xFF666666),
+                                          fontSize: 14),
                                     ))),
                           ],
                         )),

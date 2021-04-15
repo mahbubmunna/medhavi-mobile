@@ -13,7 +13,7 @@ class CartItemModel {
   String _productId;
   String _size;
   String _color;
-  int _price;
+  dynamic _price;
 
   //  getters
   String get id => _id;
@@ -28,7 +28,7 @@ class CartItemModel {
 
   String get color => _color;
 
-  int get price => _price;
+  dynamic get price => _price;
 
   CartItemModel.fromMap(Map data) {
     _id = data[ID];

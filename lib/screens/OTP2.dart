@@ -9,10 +9,12 @@ import 'package:pinput/pin_put/pin_put.dart';
 class OTPScreen extends StatefulWidget {
   String phone;
   String email;
+  String fullName;
+  String password;
   FirebaseUser user;
   // String verificationID;
   //int resendToken;
-  OTPScreen(this.phone, this.email);
+  OTPScreen(this.phone, this.email, this.fullName, this.password);
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -45,8 +47,8 @@ class _OTPScreenState extends State<OTPScreen> {
             margin: EdgeInsets.only(top: 40),
             child: Center(
               child: Text(
-                'Verify 011- 977-  ${widget.phone}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                'A verification code has been sent to  ${widget.phone}',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
           ),
@@ -84,17 +86,24 @@ class _OTPScreenState extends State<OTPScreen> {
                       String phone = widget.phone.toString();
 
                       String email = widget.email.toString();
+
+                      String fullName = widget.fullName.toString();
+
+                      String password = widget.password.toString();
+
                       QuerySnapshot resultt = await _firestore
                           .collection("users")
-                          .where("name", isEqualTo: phone)
+                          .where("name", isEqualTo: fullName)
+                          .where("email", isEqualTo: email)
+                          .where("phoneNumber", isEqualTo: phone)
                           .getDocuments();
 
                       List<DocumentSnapshot> rslt = resultt.documents;
 
                       if (rslt.length == 0) {
-                        userr.signUp(phone, email, phone, phone);
+                        userr.signUp(fullName, email, password, phone);
                       } else {
-                        userr.signIn(email, phone);
+                        userr.signIn(email, password);
                       }
                     }
                     Navigator.push(context,

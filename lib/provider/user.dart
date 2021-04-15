@@ -59,6 +59,10 @@ class UserProvider with ChangeNotifier {
     }
   }
 
+  Future<void> resetPassword(String email) async {
+    return _auth.sendPasswordResetEmail(email: email);
+  }
+
   Future<bool> signUp(
       String name, String email, String password, String phoneNumber) async {
     try {

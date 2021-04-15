@@ -10,7 +10,7 @@ class PaymentModel {
   String _uid;
   String _id;
   String _name;
-  double _amount;
+  dynamic _amount;
   bool _status;
 
   //getter methods
@@ -21,7 +21,7 @@ class PaymentModel {
 
   String get name => _name;
 
-  double get amount => _amount;
+  dynamic get amount => _amount;
 
   bool get status => _status;
 

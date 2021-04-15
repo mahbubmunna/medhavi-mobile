@@ -192,29 +192,19 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-//            featured products
             Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Container(
                       alignment: Alignment.centerLeft,
-                      child: new Text('Recommended For You')),
+                      child: new Text('Categories')),
                 ),
               ],
             ),
-            FeaturedProducts(),
-            SizedBox(
-              height: 35,
-            ),
-            Text("Categories"),
-            SizedBox(
-              height: 35,
-            ),
 
             Container(
-              height: 100,
-              width: 100,
+              height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categoryProvider.categories.length,
@@ -239,6 +229,25 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   }),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+
+//            featured products
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: new Text('Recommended For You')),
+                ),
+              ],
+            ),
+            FeaturedProducts(),
+            SizedBox(
+              height: 35,
             ),
 
 //          recent products

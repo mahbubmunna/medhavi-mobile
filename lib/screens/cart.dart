@@ -225,59 +225,51 @@ class _CartScreenState extends State<CartScreen> {
                                         width: 320.0,
                                         child: RaisedButton(
                                           onPressed: () async {
-                                            // var uuid = Uuid();
-                                            // String id = uuid.v4();
-                                            // _orderServices.createOrder(
-                                            //     userId: userProvider.user.uid,
-                                            //     id: id,
-                                            //     description:
-                                            //         "Order Successfully Placed",
-                                            //     status: "Done",
-                                            //     totalPrice: userProvider
-                                            //         .userModel.totalCartPrice,
-                                            //     cart: userProvider
-                                            //         .userModel.cart);
+                                            var uuid = Uuid();
+                                            String id = uuid.v4();
+                                            _orderServices.createOrder(
+                                                userId: userProvider.user.uid,
+                                                id: id,
+                                                description:
+                                                    "Order Successfully Placed",
+                                                status: "Done",
+                                                totalPrice: userProvider
+                                                    .userModel.totalCartPrice,
+                                                cart: userProvider
+                                                    .userModel.cart);
 
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (BuildContext
-                                            //                 context) =>
-                                            //             Pay(
-                                            //               id: userProvider
-                                            //                   .userModel.id,
-                                            //               name: userProvider
-                                            //                   .userModel.name,
-                                            //               totalPrice: userProvider
-                                            //                       .userModel
-                                            //                       .totalCartPrice *
-                                            //                   0.1,
-                                            //             )));
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        Pay(
+                                                          id: userProvider
+                                                              .userModel.id,
+                                                          name: userProvider
+                                                              .userModel.name,
+                                                          totalPrice: userProvider
+                                                              .userModel
+                                                              .totalCartPrice,
+                                                        )));
 
-                                            // for (CartItemModel cartItem
-                                            //     in userProvider
-                                            //         .userModel.cart) {
-                                            //   bool value = await userProvider
-                                            //       .removeFromCart(
-                                            //           cartItem: cartItem);
-                                            //   if (value) {
-                                            //     userProvider.reloadUserModel();
-                                            //     print("Item added to cart");
-                                            //     _key.currentState.showSnackBar(
-                                            //         SnackBar(
-                                            //             content: Text(
-                                            //                 "Removed from Cart!")));
-                                            //   } else {
-                                            //     print("ITEM WAS NOT REMOVED");
-                                            //   }
-                                            // }
-
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (BuildContext
-                                            //                 context) =>
-                                            //             Pay()));
+                                            for (CartItemModel cartItem
+                                                in userProvider
+                                                    .userModel.cart) {
+                                              bool value = await userProvider
+                                                  .removeFromCart(
+                                                      cartItem: cartItem);
+                                              if (value) {
+                                                userProvider.reloadUserModel();
+                                                print("Item added to cart");
+                                                _key.currentState.showSnackBar(
+                                                    SnackBar(
+                                                        content: Text(
+                                                            "Removed from Cart!")));
+                                              } else {
+                                                print("ITEM WAS NOT REMOVED");
+                                              }
+                                            }
                                           },
                                           child: Text(
                                             "Accept",

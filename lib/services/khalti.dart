@@ -5,20 +5,20 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:trial1/helpers/roundedborder.dart';
+import 'package:trial1/models/order.dart';
+import 'package:trial1/screens/home.dart';
+import 'package:trial1/services/payment.dart';
+import 'package:vector_math/vector_math_operations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_khalti/flutter_khalti.dart';
 import 'package:provider/provider.dart';
-import 'package:trial1/helpers/roundedborder.dart';
-import 'package:trial1/models/order.dart';
-import 'package:trial1/screens/home.dart';
 import 'package:uuid/uuid.dart';
 import '../screens/cart.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-
-import 'payment.dart';
 
 PaymentServices _paymentServices = PaymentServices();
 OrderModel orderModel;
@@ -54,8 +54,7 @@ class _PayState extends State<Pay> {
         'token': tkn,
         'amount': amnt
       }, headers: {
-        'Authorization':
-            'test_secret_key_debe81e66f50442d96f23bd411157d53' //change with secret key
+        'Authorization': 'Key test_secret_key_e34309fdd6434402958c7919d99c2d74'
       });
 
       print("Response status : ${ssv.statusCode}");
@@ -67,8 +66,7 @@ class _PayState extends State<Pay> {
 
   _khaltipay() async {
     FlutterKhalti _flutterKhalti = FlutterKhalti.configure(
-      publicKey:
-          "test_public_key_138fec8f63ff4ddabbf6acee7292ac49", //change with public key
+      publicKey: "test_public_key_71df426f55c64e1fa025efc8af0cdd10",
       urlSchemeIOS: "KhaltiPayFlutterExampleScheme",
       paymentPreferences: [
         KhaltiPaymentPreference.KHALTI,
@@ -202,15 +200,15 @@ class _PayState extends State<Pay> {
                 onTap: () {
                   _khaltipay();
                   _hello();
-                  _key.currentState.showSnackBar(SnackBar(
-                      backgroundColor: Colors.blueAccent,
-                      behavior: SnackBarBehavior.floating,
-                      content: Text(
-                        "Your password resent link has been sent to your Gmail account.Please check",
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
-                      )));
+                  // _key.currentState.showSnackBar(SnackBar(
+                  //     backgroundColor: Colors.blueAccent,
+                  //     behavior: SnackBarBehavior.floating,
+                  //     content: Text(
+                  //       "Your password resent link has been sent to your Gmail account.Please check",
+                  //       style: TextStyle(
+                  //         fontSize: 17,
+                  //       ),
+                  //     )));
                 },
                 title: Text("Khalti"),
                 trailing: Icon(Icons.arrow_forward_ios),
