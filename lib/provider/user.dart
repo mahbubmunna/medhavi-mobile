@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,7 @@ enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
+  FirebaseMessaging _messaging;
   Status _status = Status.Uninitialized;
   UserServices _userServices = UserServices();
   OrderServices _orderServices = OrderServices();
@@ -38,6 +40,7 @@ class UserProvider with ChangeNotifier {
 
   UserProvider.initialize() : _auth = FirebaseAuth.instance {
     _auth.onAuthStateChanged.listen(_onStateChanged);
+    registerNotification();
   }
 
   Future<bool> signIn(String email, String password) async {

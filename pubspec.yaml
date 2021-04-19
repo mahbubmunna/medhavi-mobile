@@ -29,11 +29,12 @@ dependencies:
   firebase_storage:
   fluttertoast:
   charts_flutter: ^0.10.0
+  firebase_core: ^0.4.4
+  firebase_messaging: ^6.0.15
   shared_preferences:
   image_picker:
   expandable:
   mongo_dart:
-  firebase_messaging:
   about:
   cached_network_image:
   intl: ^0.15.7
