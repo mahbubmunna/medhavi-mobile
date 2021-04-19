@@ -6,6 +6,8 @@ import 'package:trial1/helpers/style.dart';
 import 'package:trial1/provider/category.dart';
 import 'package:trial1/provider/product.dart';
 import 'package:trial1/provider/user.dart';
+import 'package:trial1/screens/about_us.dart';
+import 'package:trial1/screens/faqs.dart';
 import 'package:trial1/screens/favorite.dart';
 import 'package:trial1/screens/ordershomepage.dart';
 import 'package:trial1/screens/product_search.dart';
@@ -139,6 +141,21 @@ class _HomePageState extends State<HomePage> {
               },
               leading: Icon(Icons.person),
               title: CustomText(text: "My Profile"),
+            ),
+            ListTile(
+              onTap: () async {
+                changeScreen(context, Faqs());
+              },
+              leading: Icon(Icons.question_answer),
+              title: CustomText(text: "FAQ"),
+            ),
+            ListTile(
+              onTap: () async {
+                await userProvider.getOrders();
+                changeScreen(context, AboutUs());
+              },
+              leading: Icon(Icons.info_rounded),
+              title: CustomText(text: "About Us"),
             ),
             ListTile(
               onTap: () {

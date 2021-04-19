@@ -12,15 +12,18 @@ class UserModel {
   static const CART = "cart";
   static const AVATARURL = "avatarUrl";
   static const FAVORITE = "favorite";
+  static const DOB = "dob";
 
   String _email;
   String uid;
   String _phoneNumber;
+  String _dob;
   String _stripeId;
   dynamic _priceSum = 0.5;
 
   String avatarUrl;
   String displayName;
+
 
 //  getters
   String get name => displayName;
@@ -35,7 +38,10 @@ class UserModel {
 
   String get stripeId => _stripeId;
 
+  String get dob => _dob;
+
   UserModel(this.uid, {this.displayName, this.avatarUrl});
+
 
   // public variables
   List<CartItemModel> cart = [];
@@ -47,8 +53,9 @@ class UserModel {
     _email = snapshot.data[EMAIL];
     uid = snapshot.data[ID];
     avatarUrl = snapshot.data[AVATARURL];
-    _phoneNumber = snapshot.data[NAME];
+    _phoneNumber = snapshot.data[PHONENUMBER];
     _stripeId = snapshot.data[STRIPE_ID] ?? "";
+    _dob = snapshot.data[DOB] ?? "";
     cart = _convertCartItems(snapshot.data[CART] ?? []);
     favorite = _convertFavoriteItems(snapshot.data[FAVORITE] ?? []);
     totalCartPrice = snapshot.data[CART] == null

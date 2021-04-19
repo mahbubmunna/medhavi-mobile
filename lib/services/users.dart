@@ -61,13 +61,16 @@ class UserServices {
     });
   }
 
-  void updateUser({String userId, String name, UserModel phoneNumber}) {
-    print("THE USER ID IS: $userId");
+  Future<bool> updateUser(Map<String, dynamic> data) async =>
     _firestore
         .collection(collection)
-        .document(userId)
-        .updateData({'name': name, 'phoneNumber': phoneNumber});
-  }
+        .document(data['id'])
+        .updateData(data)
+        .then((value) => true)
+        .catchError((error) {
+      print(error);
+      return false;
+    });
 
   void removeFromFavorite({String userId, FavoriteItemModel favoriteItem}) {
     print("THE USER ID IS: $userId");

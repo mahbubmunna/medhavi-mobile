@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trial1/provider/category.dart';
+import 'package:trial1/provider/faq.dart';
 
 import 'provider/app.dart';
 import 'provider/product.dart';
@@ -17,6 +18,7 @@ void main() {
       ChangeNotifierProvider.value(value: UserProvider.initialize()),
       ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
       ChangeNotifierProvider.value(value: ProductProvider.initialize()),
+      ChangeNotifierProvider.value(value: FaqProvider.initialize()),
       ChangeNotifierProvider.value(value: AppProvider()),
     ],
     child: MaterialApp(

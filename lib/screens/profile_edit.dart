@@ -16,11 +16,25 @@ import 'package:trial1/widgets/manage_profile_information_widget.dart';
 import '../locator.dart';
 
 class ProfileEdit extends StatefulWidget {
+  final UserModel userModel;
+  ProfileEdit({this.userModel});
   @override
   _ProfileEditState createState() => _ProfileEditState();
 }
 
 class _ProfileEditState extends State<ProfileEdit> {
+  TextEditingController _userNameController;
+  TextEditingController _phoneNumberController;
+  TextEditingController _dobController;
+
+  @override
+  void initState() {
+    _userNameController = TextEditingController(text: widget.userModel.name);
+    _phoneNumberController = TextEditingController(text: widget.userModel.phoneNumber);
+    _dobController = TextEditingController(text: widget.userModel.dob);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -39,12 +53,12 @@ class _ProfileEditState extends State<ProfileEdit> {
                     onTap: () async {
                       File image = await ImagePicker.pickImage(
                           source: ImageSource.gallery);
-                      // print(image.path);
-
+                      //  print(image.path);
+                      //
                       // await locator
                       //     .get<UserController>()
                       //     .uploadProfilePicture(image);
-
+                      //
                       // setState(() {});
                     },
                   ),
@@ -149,6 +163,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               subtitle: TextFormField(
+                controller: _userNameController,
                 decoration: InputDecoration(hintText: "Enter your Full Name"),
               ),
             ),
@@ -161,6 +176,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               subtitle: TextFormField(
+                controller: _phoneNumberController,
                 decoration:
                     InputDecoration(hintText: "Enter your Phone Number"),
               ),
@@ -174,41 +190,49 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
               ),
               subtitle: TextFormField(
+                controller: _dobController,
                 decoration:
                     InputDecoration(hintText: "Enter your Date of Birth"),
               ),
             ),
             SizedBox(height: 5.0),
             Divider(),
-            Container(height: 15.0),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(
-                "Change Password".toUpperCase(),
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            ListTile(
-              title: TextFormField(
-                decoration: InputDecoration(hintText: "Old Password"),
-              ),
-            ),
-            ListTile(
-              title: TextFormField(
-                decoration: InputDecoration(hintText: "New Password"),
-              ),
-            ),
-            ListTile(
-              title: TextFormField(
-                decoration: InputDecoration(hintText: "Re-enter New Password"),
-              ),
-            ),
+            // Container(height: 15.0),
+            // Padding(
+            //   padding: EdgeInsets.all(5.0),
+            //   child: Text(
+            //     "Change Password".toUpperCase(),
+            //     style: TextStyle(
+            //       fontSize: 16.0,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            // ListTile(
+            //   title: TextFormField(
+            //     decoration: InputDecoration(hintText: "Old Password"),
+            //   ),
+            // ),
+            // ListTile(
+            //   title: TextFormField(
+            //     decoration: InputDecoration(hintText: "New Password"),
+            //   ),
+            // ),
+            // ListTile(
+            //   title: TextFormField(
+            //     decoration: InputDecoration(hintText: "Re-enter New Password"),
+            //   ),
+            // ),
             RaisedButton(
               onPressed: () {
                 // TODO: Save somehow
+                Map<String, dynamic> data = {
+                  'id': userProvider.userModel.id,
+                  'name': _userNameController.text,
+                  'phoneNumber': _phoneNumberController.text,
+                  'dob': _dobController.text
+                };
+                userProvider.updateUserData(data);
                 Navigator.pop(context);
               },
               child: Text("Save Profile"),

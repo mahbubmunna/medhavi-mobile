@@ -31,6 +31,10 @@ dependencies:
   charts_flutter: ^0.10.0
   shared_preferences:
   image_picker:
+  expandable:
+  mongo_dart:
+  firebase_messaging:
+  about:
   cached_network_image:
   intl: ^0.15.7
   firebase_database:

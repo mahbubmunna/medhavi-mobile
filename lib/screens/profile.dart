@@ -125,7 +125,7 @@ class _ProfileState extends State<Profile> {
                   size: 20.0,
                 ),
                 onPressed: () {
-                  changeScreen(context, ProfileEdit());
+                  changeScreen(context, ProfileEdit(userModel: userProvider.userModel,));
                 },
                 tooltip: "Edit",
               ),
@@ -151,21 +151,21 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               subtitle: Text(
-                "+977-9845945151",
+                userProvider.userModel?.phoneNumber ?? "phone loading ...",
               ),
             ),
-            ListTile(
-              title: Text(
-                "Gender",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              subtitle: Text(
-                "Male",
-              ),
-            ),
+            // ListTile(
+            //   title: Text(
+            //     "Gender",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w700,
+            //     ),
+            //   ),
+            //   subtitle: Text(
+            //     "Male",
+            //   ),
+            // ),
             ListTile(
               title: Text(
                 "Date of Birth",
@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               subtitle: Text(
-                "January 04, 2000",
+                userProvider.userModel?.dob ?? "date loading ..."
               ),
             ),
           ],

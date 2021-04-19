@@ -208,4 +208,17 @@ class UserProvider with ChangeNotifier {
     _userModel = await _userServices.getUserById(user.uid);
     notifyListeners();
   }
+
+  updateUserData(Map<String, dynamic> data) async{
+    bool isSuccess = false;
+    isSuccess = await _userServices.updateUser(data);
+    if (isSuccess) {
+      print('User Data Updated Successfully');
+      _userModel = await _userServices.getUserById(data['id']);
+    }else {
+      print('Update unsuccessful');
+    }
+
+    notifyListeners();
+  }
 }
