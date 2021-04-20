@@ -2,19 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryModel {
   static const ID = "id";
-  static const IMAGE = "image";
-  static const NAME = "name";
+  static const IMAGE = "picture";
+  static const NAME = "category";
   static const SIZES = "sizes";
   static const COLORS = "colors";
 
-  int _id;
+  String _id;
   String _image;
   String _name;
   List _sizes;
   List _colors;
 
   //  getters
-  int get id => _id;
+  String get id => _id;
 
   String get image => _image;
 

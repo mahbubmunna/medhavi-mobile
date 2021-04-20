@@ -1,13 +1,16 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:trial1/models/favorite.dart';
 import 'package:trial1/models/favorite_item.dart';
 import 'package:trial1/models/cart_item.dart';
 import 'package:trial1/models/order.dart';
 import 'package:trial1/models/product.dart';
+import 'package:trial1/models/push_notification.dart';
 import 'package:trial1/models/user.dart';
 import 'package:trial1/services/favorite.dart';
 import 'package:trial1/services/order.dart';
@@ -19,13 +22,13 @@ enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
-  FirebaseMessaging _messaging;
   Status _status = Status.Uninitialized;
   UserServices _userServices = UserServices();
   OrderServices _orderServices = OrderServices();
   FavoriteServices _favoriteServices = FavoriteServices();
 
   UserModel _userModel;
+
 
 //  getter
   UserModel get userModel => _userModel;
@@ -40,7 +43,6 @@ class UserProvider with ChangeNotifier {
 
   UserProvider.initialize() : _auth = FirebaseAuth.instance {
     _auth.onAuthStateChanged.listen(_onStateChanged);
-    registerNotification();
   }
 
   Future<bool> signIn(String email, String password) async {
@@ -224,4 +226,6 @@ class UserProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+
 }

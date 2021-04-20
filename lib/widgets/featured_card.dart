@@ -42,7 +42,7 @@ class FeaturedCard extends StatelessWidget {
               ),
               child: Container(
                 width: 170,
-                height: 210,
+                height: 180,
                 child: Column(
                   children: <Widget>[
                     Stack(
@@ -80,8 +80,8 @@ class FeaturedCard extends StatelessWidget {
                             child: FadeInImage.memoryNetwork(
                               placeholder: kTransparentImage,
                               image: product.picture,
-                              height: 130,
-                              width: 135,
+                              height: 100,
+                              width: 100,
                             ),
                           ),
                         )
@@ -92,7 +92,7 @@ class FeaturedCard extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           alignment: Alignment.bottomLeft,
-                          padding: EdgeInsets.only(left: 5, top: 10),
+                          padding: EdgeInsets.only(left: 5, top: 5),
                           child: Text('${product.name} \n',
                               style: TextStyle(
                                   color: Color(0xFF6e6e71),

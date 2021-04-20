@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:trial1/animation/ScaleRoute.dart';
@@ -6,6 +7,7 @@ import 'package:trial1/helpers/common.dart';
 import 'package:trial1/helpers/style.dart';
 import 'package:trial1/models/product.dart';
 import 'package:trial1/provider/app.dart';
+import 'package:trial1/provider/product.dart';
 import 'package:trial1/provider/user.dart';
 import 'package:trial1/screens/cart.dart';
 import 'package:trial1/widgets/custom_text.dart';
@@ -39,6 +41,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
 
     return Scaffold(
       key: _key,
@@ -226,6 +229,29 @@ class _ProductDetailsState extends State<ProductDetails> {
                         child: Text(widget.product.description,
                             style: TextStyle(color: Colors.black)),
                       ),
+                    ),
+                    SizedBox(height: 10,),
+                    Expanded(
+                      child: RatingBar.builder(
+                        initialRating: 3,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                          productProvider.giveRatingToProduct(
+                            userProvider.userModel.uid,
+                            widget.product.id,
+                            rating
+                          );
+                        },
+                      )
                     ),
                     Padding(
                       padding: const EdgeInsets.all(9),

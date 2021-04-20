@@ -15,7 +15,7 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
     final productProvider = Provider.of<ProductProvider>(context);
 
     return Container(
-        height: 230,
+        height: 200,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: productProvider.products.length,

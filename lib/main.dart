@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:trial1/provider/category.dart';
 import 'package:trial1/provider/faq.dart';
+import 'package:trial1/provider/firebase_messaging.dart';
 
 import 'provider/app.dart';
 import 'provider/product.dart';
@@ -19,12 +21,15 @@ void main() {
       ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
       ChangeNotifierProvider.value(value: ProductProvider.initialize()),
       ChangeNotifierProvider.value(value: FaqProvider.initialize()),
+      ChangeNotifierProvider.value(value: FirebaseNotificationProvider.initialize()),
       ChangeNotifierProvider.value(value: AppProvider()),
     ],
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.white),
-      home: ScreensController(),
+    child: OverlaySupport(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.white),
+        home: ScreensController(),
+      ),
     ),
   ));
 }

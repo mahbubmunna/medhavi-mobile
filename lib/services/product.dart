@@ -3,7 +3,9 @@ import 'package:trial1/models/product.dart';
 
 class ProductServices {
   String collection = "products";
+  String ratingCollection = "rating";
   Firestore _firestore = Firestore.instance;
+
 
   Future<List<ProductModel>> getProducts() async =>
       _firestore.collection(collection).getDocuments().then((result) {
@@ -44,4 +46,14 @@ class ProductServices {
           return products;
         });
   }
+
+  Future<bool> giveRatingToProduct(Map<String, dynamic> data) =>
+     _firestore
+        .collection(ratingCollection)
+        .add(data)
+        .then((value) => true)
+        .catchError((error) => false);
+
+
+
 }
